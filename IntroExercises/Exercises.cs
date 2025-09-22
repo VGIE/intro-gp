@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,16 +19,27 @@ namespace IntroExercises
             {
                 if (array[i] == value)
                     return i;
+                
 
             }
-            return 0;
+            
+            return -1;
         }
 
         //TODO #2
         //Count should return the number of times value appears in array. 0 if the array is empty/null
         public static int Count(int[] array, int value)
         {
-            return 0;
+            int times = 0;
+            if (array == null)
+                return 0;
+            for (int i = 0; i < array.Length; i++)
+                {
+                    if (array[i] == value)
+                        times++;
+
+                }
+            return times;
         }
 
         //TODO #3
@@ -34,7 +47,15 @@ namespace IntroExercises
         //-1 if endIndex is less than startIndex or any of them is outside the array
         public static int Find(int[] array, int value, int startIndex, int endIndex)
         {
-            return 0;
+            if (endIndex < startIndex || startIndex<array.Length || endIndex<array.Length)
+                return -1;
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                if (array[i] == value)
+                    return i;
+                
+            }
+            return -1;
         }
 
         //TODO #4
@@ -43,8 +64,19 @@ namespace IntroExercises
 
         public static int Count(int[] array, int value, int startIndex, int endIndex)
         {
-            
-            return 0;
+            int times = 0;
+        
+           if (endIndex < startIndex || startIndex < array.Length || endIndex < array.Length)
+                return 0;
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                if (array[i] == value)
+                    return times++;
+                
+            }
+            if (times == 0)
+                return -1;
+            return times;
         }
 
         //TODO #5
@@ -57,6 +89,20 @@ namespace IntroExercises
         //  AreEqual(null, null) => false
         public static bool AreEqual(int[] A, int[] B)
         {
+            
+           
+            if (A == null || B == null)
+                return false;
+            if (A.Length != B.Length)
+                return false;
+            for (int i = 0; i < A.Length; i++)
+            {
+
+                int countA = Count(A, A[i]);
+                int countB = Count(B, B[i]);
+                if (countA == countB)
+                    return false;
+            }
             return true;
         }
     }
